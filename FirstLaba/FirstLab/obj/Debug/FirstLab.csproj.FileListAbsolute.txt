@@ -1,0 +1,33 @@
+D:\1C bases\sdfsdf\FirstLab\FirstLab\bin\Debug\FirstLab.exe.config
+D:\1C bases\sdfsdf\FirstLab\FirstLab\bin\Debug\FirstLab.exe
+D:\1C bases\sdfsdf\FirstLab\FirstLab\bin\Debug\FirstLab.pdb
+D:\1C bases\sdfsdf\FirstLab\FirstLab\obj\Debug\FirstLab.csprojResolveAssemblyReference.cache
+D:\1C bases\sdfsdf\FirstLab\FirstLab\obj\Debug\FirstLab.exe
+D:\1C bases\sdfsdf\FirstLab\FirstLab\obj\Debug\FirstLab.pdb
+F:\FirstLab\FirstLab\bin\Debug\FirstLab.exe.config
+F:\FirstLab\FirstLab\obj\Debug\FirstLab.exe
+F:\FirstLab\FirstLab\obj\Debug\FirstLab.pdb
+F:\FirstLab\FirstLab\bin\Debug\FirstLab.exe
+F:\FirstLab\FirstLab\bin\Debug\FirstLab.pdb
+D:\FirstLab\FirstLab\bin\Debug\FirstLab.exe.config
+D:\FirstLab\FirstLab\bin\Debug\FirstLab.exe
+D:\FirstLab\FirstLab\bin\Debug\FirstLab.pdb
+D:\FirstLab\FirstLab\obj\Debug\FirstLab.exe
+D:\FirstLab\FirstLab\obj\Debug\FirstLab.pdb
+D:\FirstLab\FirstLab\obj\Debug\FirstLab.csprojResolveAssemblyReference.cache
+C:\Users\Антон\Desktop\FirstLaba\FirstLab\obj\Debug\FirstLab.csproj.CoreCompileInputs.cache
+C:\Users\Антон\Desktop\FirstLaba\FirstLab\obj\Debug\FirstLab.exe
+C:\Users\Антон\Desktop\FirstLaba\FirstLab\bin\Debug\FirstLab.exe.config
+C:\Users\Антон\Desktop\FirstLaba\FirstLab\bin\Debug\FirstLab.exe
+C:\Users\Антон\Desktop\FirstLaba\FirstLab\bin\Debug\FirstLab.pdb
+C:\Users\Антон\Desktop\FirstLaba\FirstLab\obj\Debug\FirstLab.pdb
+F:\FirstLaba\FirstLab\bin\Debug\FirstLab.exe.config
+F:\FirstLaba\FirstLab\obj\Debug\FirstLab.exe
+F:\FirstLaba\FirstLab\obj\Debug\FirstLab.pdb
+F:\FirstLaba\FirstLab\bin\Debug\FirstLab.exe
+F:\FirstLaba\FirstLab\bin\Debug\FirstLab.pdb
+D:\FirstLaba\FirstLab\bin\Debug\FirstLab.exe.config
+D:\FirstLaba\FirstLab\obj\Debug\FirstLab.exe
+D:\FirstLaba\FirstLab\obj\Debug\FirstLab.pdb
+D:\FirstLaba\FirstLab\obj\Debug\FirstLab.csprojResolveAssemblyReference.cache
+F:\FirstLaba\FirstLab\obj\Debug\FirstLab.csproj.CoreCompileInputs.cache
