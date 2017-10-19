@@ -30,6 +30,7 @@ namespace FirstLab
         /// </summary>
         public static Dictionary<string, ICommand> AllComm { get; private set; }
 
+        // Запущено ли приложение
         private bool isRunning = true;
         private bool Interactive { get; set; }
         public void Stop()
