@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace FirstLab.Commands
 {
@@ -17,7 +18,7 @@ namespace FirstLab.Commands
 
         public string[] Synonyms
         {
-            get { return new[] {"rand", "generate"}; }
+            get { return new[] { "rand", "generate" }; }
         }
 
         /// <summary>
@@ -30,29 +31,45 @@ namespace FirstLab.Commands
         /// <returns>Возвращает уведомление о выполнении операции</returns>
         public void Execute(List<int> param)
         {
-            // Кол-во случайных чисел
-            // Если кол-во случайных чисел в списке не указано то будет 1000
-            var currParam = 1000;
-
-            //Создание объекта для генерации случайных чисел
-            Random rnd = new Random();
-
-            Data.DataSequence = new List<int>();
-
-            // Если существует параметр, который обоначает кол-во чисел в массиве то
-            //  используем его
-            if (param.Count > 0)
+            try
             {
-                currParam = param[0];
-            }
+                // Кол-во случайных чисел
+                // Если кол-во случайных чисел в списке не указано то будет 1000
+                var currParam = 1000;
 
-            for (var i = 0; i < currParam; i++)
+                //Создание объекта для генерации случайных чисел
+                Random rnd = new Random();
+
+                Data.DataSequence = new List<int>();
+
+                // Если существует параметр, который обоначает кол-во чисел в массиве то
+                //  используем его
+                if (param.Count > 0)
+                {
+                    if (param[0] <= 0)
+                    {
+                        throw new InvalidDataException();
+                    }
+                    currParam = param[0];
+                }
+
+                for (var i = 0; i < currParam; i++)
+                {
+                    // Получить случайное число (в диапазоне от 0 до 10)
+                    Data.DataSequence.Add(rnd.Next(0, 10));
+                }
+                Console.WriteLine("Последовательность установлена");
+            }
+            catch (InvalidDataException)
             {
-                // Получить случайное число (в диапазоне от 0 до 10)
-                Data.DataSequence.Add(rnd.Next(0, 10));
+                Console.WriteLine("Заданы некорректные данные, " +
+                                  "параметр должен быть целочисленным и больше 0.");
             }
-
-            Console.WriteLine("Последовательность установлена");
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
     }
 }

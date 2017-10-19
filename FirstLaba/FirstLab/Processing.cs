@@ -23,22 +23,21 @@ namespace FirstLab
         // Запущено ли приложение
         private bool isRunning = true;
         private bool Interactive { get; set; }
-        public void Stop()
-        {
-            isRunning = false;
-        }
+
+        public List<ICommand> Commands { get; set; }
 
         public Processing(TextReader reader, bool interactive)
         {
-            AllComm = new Dictionary<string, ICommand>
+            AllComm = new Dictionary<string, ICommand>();
+            Commands = new List<ICommand>
             {
-                {"exit", new ExitCommand(this)},
-                {"help", new HelpCommand()},
-                {"test", new TestCommand()},
-                {"random", new RandCommand()},
-                {"sequence", new SeqCommand()},
-                {"iterations", new IterCommand()},
-                {"clear", new Clear()}
+                {new ExitCommand(this)},
+                {new HelpCommand()},
+                {new TestCommand()},
+                {new RandCommand()},
+                {new SeqCommand()},
+                {new IterCommand()},
+                {new Clear()}
             };
 
             Interactive = interactive;
@@ -52,8 +51,27 @@ namespace FirstLab
             }
         }
 
+        public void AddCommands()
+        {
+            foreach (var currComm in Commands)
+            {
+                AllComm.Add(currComm.Name, currComm);
+                foreach (var synonym in currComm.Synonyms)
+                {
+                    AllComm.Add(synonym, currComm);
+                }
+            }
+        }
+
+        public void Stop()
+        {
+            isRunning = false;
+        }
+
         public void Run()
         {
+            AddCommands();
+
             List<string>.Enumerator commandsFormFile = new List<string>.Enumerator();
             if(!Interactive)
                 commandsFormFile = CurrListComm.GetEnumerator();
@@ -77,13 +95,19 @@ namespace FirstLab
 
                 var comParam = Parser.ParseComm(currStr);
 
-                var comm = FindCommand(comParam.Name);
+                ICommand currComm = null;
+                if (comParam != null)
+                {
+                    currComm = FindCommand(comParam.Name);
+                }
 
-                if (comm != null)
-                    comm.Execute(comParam.Params);
+                if (currComm != null)
+                {
+                    currComm.Execute(comParam.Params);
+                }
             }
         }
-        
+
         /// <summary>
         /// Поиск команды в словаре среди имени и его синонимов
         /// </summary>
@@ -91,9 +115,7 @@ namespace FirstLab
         /// <returns>Возвращает экземпляр класса команды</returns>
         private ICommand FindCommand(string currCommand)
         {
-            // Приведение имени команды в нижний регистр
             currCommand = currCommand.ToLower();
-
             try
             {
                 // Проверка наличия в словаре по имени
@@ -101,22 +123,13 @@ namespace FirstLab
                 {
                     return AllComm[currCommand];
                 }
-
-                // Если результат не найден то производится поиск по синонимам.
-                var result = DeepCommSearch(currCommand);
-
-                // Если команда не найдена - генерируем исключение
-                if (result == null)
-                {
-                    throw new Exception("Команда не найдена.");
-                }
-                return result;
+                AllComm[""].Name = name;
+                return notFound;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
             }
-            return null;
         }
 
         /// <summary>

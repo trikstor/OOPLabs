@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace FirstLab
 {
@@ -22,22 +24,34 @@ namespace FirstLab
         {
             try
             {
-                    var currListComm =
-                        str.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                var currListComm =
+                    str.Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries);
 
-                    if (currListComm.Length == 0)
+                if (currListComm.Length == 0)
+                {
+                    return null;
+                }
+
+                var param = new List<int>();
+
+                for (var i = 1; i < currListComm.Length; i++)
+                {
+                    foreach (var flag in currListComm[i].Select(ch => !Char.IsLetter(ch)))
                     {
-                        return null;
+                        if (!flag)
+                        {
+                            throw new InvalidDataException("символ '" + currListComm[i] + 
+                                "', позиция " + i);
+                        }
                     }
+                    param.Add(Convert.ToInt32(currListComm[i], 10));
+                }
+                return new Command(currListComm[0], param);
 
-                    var param = new List<int>();
-
-                    for (var i = 1; i < currListComm.Length; i++)
-                    {
-                        param.Add(Convert.ToInt32(currListComm[i], 10));
-                    }
-                    return new Command(currListComm[0], param);
-             
+            }
+            catch (InvalidDataException e)
+            {
+                Console.WriteLine("Параметр должен содержать только целые числа " + e.Message);
             }
             catch (Exception x)
             {

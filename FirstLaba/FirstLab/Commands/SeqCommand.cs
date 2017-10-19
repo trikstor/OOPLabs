@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace FirstLab.Commands
 {
@@ -27,8 +28,28 @@ namespace FirstLab.Commands
         /// <returns>Возвращает информационное сообщение</returns>
         public void Execute(List<int> param)
         {
-            Data.DataSequence = param;
-            Console.WriteLine("Последовательность установлена");
+            try
+            {
+                if (param.Count > 0)
+                {
+                    Data.DataSequence = param;
+                    Console.WriteLine("Последовательность установлена");
+                }
+                else
+                {
+                    throw new InvalidDataException();
+                }
+            }
+            catch (InvalidDataException)
+            {
+                Console.WriteLine("В последователности должен быть хотя бы один элемент.");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+
         }
     }
 }

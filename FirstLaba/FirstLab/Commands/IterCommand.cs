@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace FirstLab.Commands
 {
@@ -27,8 +28,31 @@ namespace FirstLab.Commands
         /// <returns>Возвращает информационное сообщение</returns>
         public void Execute(List<int> param)
         {
-            Data.QuantIterations = param[0];
-            Console.WriteLine("Количество итераций: {0}", Data.QuantIterations);
+            try
+            {
+                if (param.Count <= 0)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+                if (param[0] > 0)
+                {
+                    Data.QuantIterations = param[0];
+                    Console.WriteLine("Количество итераций: {0}", Data.QuantIterations);
+                }
+                else
+                {
+                    throw new InvalidDataException();
+                }
+            }
+            catch (IndexOutOfRangeException)
+            {
+                Console.WriteLine("Должен быть один параметр.");
+            }
+            catch (InvalidDataException)
+            {
+                Console.WriteLine("Заданы некорректные данные, " +
+                                  "параметр должен быть целочисленным и больше 0.");
+            }
         }
     }
 }
