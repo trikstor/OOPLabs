@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Command.cs" />
+    <Compile Include="Commands\Clear.cs" />
     <Compile Include="Commands\ExitCommand.cs" />
     <Compile Include="Commands\HelpCommand.cs" />
     <Compile Include="Commands\ICommand.cs" />
@@ -51,12 +52,13 @@
     <Compile Include="Commands\RandCommand.cs" />
     <Compile Include="Commands\SeqCommand.cs" />
     <Compile Include="Commands\TestCommand.cs" />
+    <Compile Include="Data.cs" />
+    <Compile Include="Commands\NotFoundCommand.cs" />
     <Compile Include="Parser.cs" />
     <Compile Include="Processing.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sorts.cs" />
-    <Compile Include="UserRobot.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

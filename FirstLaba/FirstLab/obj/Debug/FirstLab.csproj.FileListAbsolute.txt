@@ -32,6 +32,7 @@ D:\FirstLaba\FirstLab\obj\Debug\FirstLab.pdb
 D:\FirstLaba\FirstLab\obj\Debug\FirstLab.csprojResolveAssemblyReference.cache
 F:\FirstLaba\FirstLab\obj\Debug\FirstLab.csproj.CoreCompileInputs.cache
 C:\Users\Acer\Saved Games\Desktop\OOPLabs\FirstLaba\FirstLab\bin\Debug\FirstLab.exe.config
+C:\Users\Acer\Saved Games\Desktop\OOPLabs\FirstLaba\FirstLab\bin\Debug\FirstLab.exe
+C:\Users\Acer\Saved Games\Desktop\OOPLabs\FirstLaba\FirstLab\bin\Debug\FirstLab.pdb
 C:\Users\Acer\Saved Games\Desktop\OOPLabs\FirstLaba\FirstLab\obj\Debug\FirstLab.exe
 C:\Users\Acer\Saved Games\Desktop\OOPLabs\FirstLaba\FirstLab\obj\Debug\FirstLab.pdb
-C:\Users\Acer\Saved Games\Desktop\OOPLabs\FirstLaba\FirstLab\obj\Debug\FirstLab.csprojResolveAssemblyReference.cache

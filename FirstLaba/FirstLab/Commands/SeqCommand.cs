@@ -5,9 +5,20 @@ namespace FirstLab.Commands
 {
     public class SeqCommand : ICommand
     {
-        public string Name => "sequence";
-        public string Help => "Задает последовательность для обработки алгоритмами";
-        public string[] Synonyms => new[] { "Seq" };
+        public string Name
+        {
+            get { return "sequence"; }
+        }
+
+        public string Help
+        {
+            get { return "Задает последовательность для обработки алгоритмами"; }
+        }
+
+        public string[] Synonyms
+        {
+            get { return new[] {"seq"}; }
+        }
 
         /// <summary>
         /// Задает последовательность для обработки алгоритмами
@@ -16,7 +27,7 @@ namespace FirstLab.Commands
         /// <returns>Возвращает информационное сообщение</returns>
         public void Execute(List<int> param)
         {
-            Processing.DataSequence = param;
+            Data.DataSequence = param;
             Console.WriteLine("Последовательность установлена");
         }
     }

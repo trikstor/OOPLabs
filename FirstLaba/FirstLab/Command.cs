@@ -10,12 +10,12 @@ namespace FirstLab
         /// <summary>
         /// Название команды
         /// </summary>
-        public string Name { get; }
+        public string Name { get; set; }
 
         /// <summary>
         /// Параметры команды
         /// </summary>
-        public List<int> Params { get; }
+        public List<int> Params { get; set; }
 
         public Command(string name, List<int> param)
         {

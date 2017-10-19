@@ -5,9 +5,20 @@ namespace FirstLab.Commands
 {
     public class RandCommand : ICommand
     {
-        public string Name => "random";
-        public string Help => "Генерирует последовательность случайных чисел.";
-        public string[] Synonyms => new string[] { "rand", "generate" };
+        public string Name
+        {
+            get { return "random"; }
+        }
+
+        public string Help
+        {
+            get { return "Генерирует последовательность случайных чисел."; }
+        }
+
+        public string[] Synonyms
+        {
+            get { return new[] {"rand", "generate"}; }
+        }
 
         /// <summary>
         ///  Добавление последовательности случайных чисел для проверки алгоритмов
@@ -26,7 +37,7 @@ namespace FirstLab.Commands
             //Создание объекта для генерации случайных чисел
             Random rnd = new Random();
 
-            Processing.DataSequence = new List<int>();
+            Data.DataSequence = new List<int>();
 
             // Если существует параметр, который обоначает кол-во чисел в массиве то
             //  используем его
@@ -38,7 +49,7 @@ namespace FirstLab.Commands
             for (var i = 0; i < currParam; i++)
             {
                 // Получить случайное число (в диапазоне от 0 до 10)
-                Processing.DataSequence.Add(rnd.Next(0, 10));
+                Data.DataSequence.Add(rnd.Next(0, 10));
             }
 
             Console.WriteLine("Последовательность установлена");

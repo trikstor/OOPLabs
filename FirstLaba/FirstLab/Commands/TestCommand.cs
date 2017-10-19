@@ -6,20 +6,30 @@ namespace FirstLab.Commands
 {
     public class TestCommand : ICommand
     {
-        public string Name => "test";
-        public string Help => "Запуск сортировок и проверка времени их выполнения";
-        public string[] Synonyms => new[] { "run", "start" };
+        public string Name
+        {
+            get { return "test"; }
+        }
+
+        public string Help
+        {
+            get { return "Запуск сортировок и проверка времени их выполнения"; }
+        }
+
+        public string[] Synonyms
+        {
+            get { return new[] {"run", "start"}; }
+        }
 
         public void Execute(List<int> param)
         {
             try
             {
-                if (Processing.QuantIterations > 0 && Processing.DataSequence.Count > 0)
+                if (Data.QuantIterations > 0 && Data.DataSequence.Count > 0)
                 {
                     // Список для хранения среднего времени работы каждого алгоритма
                     var times = new List<double>();
 
-                    // три сортировки - три вызова метода сортировки
                     CurrSort currSort = Sorts.Bubble;
                     times.Add(Compare(currSort));
                     currSort = Sorts.Shell;
@@ -32,12 +42,14 @@ namespace FirstLab.Commands
                     // путем деления времени на кол-во итераций
                     for (var i = 0; i < 3; i++)
                     {
-                        times[i] = times[i] / Processing.QuantIterations;
+                        times[i] = times[i] / Data.QuantIterations;
                     }
 
                     var info =
-                        $"Итераций: {Processing.QuantIterations}, Размер массива: {Processing.DataSequence.Count}\n " +
-                        $"Пузырек: {times[0]}мс\n Шелл: {times[1]}мс\n Быстрая сортировка: {times[2]}мс\n";
+                        string.Format("Итераций: {0}, Размер массива: {1}\n ", Data.QuantIterations,
+                            Data.DataSequence.Count) +
+                        string.Format("Пузырек: {0}мс\n Шелл: {1}мс\n Быстрая сортировка: {2}мс\n", times[0], times[1],
+                            times[2]);
 
                     Console.WriteLine(info);
                 }
@@ -65,14 +77,14 @@ namespace FirstLab.Commands
         /// <returns>Общее время работы</returns>
         private double Compare(CurrSort sort)
         {
-            var stopWatch = new Stopwatch(); // Таймер
+            var stopWatch = new Stopwatch();
 
             // Метод алгоритма вызывается необходимое кол-во раз
             // и засекается скорость работы алгоритма
-            for (var i = 0; i < Processing.QuantIterations; i++)
+            for (var i = 0; i < Data.QuantIterations; i++)
             {
                 stopWatch.Start();
-                sort(Processing.DataSequence.ToArray());
+                sort(Data.DataSequence.ToArray());
                 stopWatch.Stop();
             }
 

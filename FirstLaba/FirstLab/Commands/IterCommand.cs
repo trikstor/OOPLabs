@@ -5,9 +5,20 @@ namespace FirstLab.Commands
 {
     public class IterCommand : ICommand
     {
-        public string Name => "iterations";
-        public string Help => "Задает кол-во итераций цикла определения среднего времени";
-        public string[] Synonyms => new[] { "iter" };
+        public string Name
+        {
+            get { return "iterations"; }
+        }
+
+        public string Help
+        {
+            get { return "Задает кол-во итераций цикла определения среднего времени"; }
+        }
+
+        public string[] Synonyms
+        {
+            get { return new[] {"iter"}; }
+        }
 
         /// <summary>
         /// Задает кол-во итераций цикла определения среднего времени
@@ -16,8 +27,8 @@ namespace FirstLab.Commands
         /// <returns>Возвращает информационное сообщение</returns>
         public void Execute(List<int> param)
         {
-            Processing.QuantIterations = param[0];
-            Console.WriteLine("Количество итераций:" + Processing.QuantIterations);
+            Data.QuantIterations = param[0];
+            Console.WriteLine("Количество итераций: {0}", Data.QuantIterations);
         }
     }
 }

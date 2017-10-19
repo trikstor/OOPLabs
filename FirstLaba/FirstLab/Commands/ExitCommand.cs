@@ -4,12 +4,30 @@ namespace FirstLab.Commands
 {
     class ExitCommand : ICommand
     {
-        public string Name => "exit";
-        public string Help => "Выход из программы";
-        public string[] Synonyms => new[] { "ext", "out" };
+        public string Name
+        {
+            get { return "exit"; }
+        }
+
+        public string Help
+        {
+            get { return "Выход из программы"; }
+        }
+
+        public string[] Synonyms
+        {
+            get { return new[] {"ext", "out"}; }
+        }
+
+        Processing app;
+        public ExitCommand(Processing app)
+        {
+            this.app = app;
+        }
 
         public void Execute(List<int> param)
         {
+            app.Stop();
         }
     }
 }

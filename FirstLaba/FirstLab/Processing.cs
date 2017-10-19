@@ -11,19 +11,9 @@ namespace FirstLab
     class Processing
     {
         /// <summary>
-        /// Кол-во итераций цикла для определения среднего времени работы алгоритмов
-        /// </summary>
-        public static int QuantIterations { get; set; }
-
-        /// <summary>
-        /// Последовательность для обработки алгоритмами
-        /// </summary>
-        public static List<int> DataSequence { get; set; }
-
-        /// <summary>
         /// Список строк с необработанными командами
         /// </summary>
-        private List<string> CurrListComm { get; }
+        private List<string> CurrListComm { get; set; }
 
         /// <summary>
         /// Словарь всех возможных команд, реализующих интерфейс ICommand
@@ -42,47 +32,55 @@ namespace FirstLab
         {
             AllComm = new Dictionary<string, ICommand>
             {
-                {"exit", new ExitCommand()},
+                {"exit", new ExitCommand(this)},
                 {"help", new HelpCommand()},
                 {"test", new TestCommand()},
                 {"random", new RandCommand()},
                 {"sequence", new SeqCommand()},
-                {"iterations", new IterCommand()}
+                {"iterations", new IterCommand()},
+                {"clear", new Clear()}
             };
 
             Interactive = interactive;
 
-            if (!interactive)
+            if (interactive) return;
+            string str;
+
+            while ((str = reader.ReadLine()) != null)
             {
-                string str;
-                while ((str = reader.ReadLine()) != null)
-                {
-                    CurrListComm.Add(str.Replace("\n", ""));
-                }
+                CurrListComm.Add(str.Replace("\n", ""));
             }
         }
 
-        /// <summary>
-        /// Запуск команды
-        /// </summary>
-        /// <param name="currComm">Комадна в удобном для исполнителя виде</param>
-        /// <returns>Возвращает true, если была введена команда выхода из программы</returns>
         public void Run()
         {
+            List<string>.Enumerator commandsFormFile = new List<string>.Enumerator();
+            if(!Interactive)
+                commandsFormFile = CurrListComm.GetEnumerator();
+
             while (isRunning)
             {
-                string currstr;
+                string currStr;
 
-                var comParam = Parser.ParseComm(Interactive:
-                    currstr = Console.ReadLine() ? );
+                if (Interactive)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write("> ");
+                    currStr = Console.ReadLine();
+                    Console.ForegroundColor = ConsoleColor.Green;
+                }
+                else
+                {
+                    commandsFormFile.MoveNext();
+                    currStr = commandsFormFile.Current;
+                }
 
-                var comm = FindCommand(currComm.Name);
+                var comParam = Parser.ParseComm(currStr);
+
+                var comm = FindCommand(comParam.Name);
 
                 if (comm != null)
-                {
-                    // Исполнение команды
-                    comm.Execute(currComm.Params);
-                }
+                    comm.Execute(comParam.Params);
             }
         }
         
