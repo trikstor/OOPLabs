@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace FirstLab
 {
@@ -117,7 +118,33 @@ namespace FirstLab
         ///</returns>
         public static void Quick(int[] data)
         {
+            QuickSort(data, 0, data.Length - 1);
+        }
+
+        public static void DefaultSort(int[] data)
+        {
             Array.Sort(data); //встроенный метод
+        }
+
+        private static void QuickSort(int[] arr, int first, int last)
+        {
+            int p = arr[(last - first) / 2 + first];
+            int temp;
+            int i = first, j = last;
+            while (i <= j)
+            {
+                while (arr[i] < p && i <= last) ++i;
+                while (arr[j] > p && j >= first) --j;
+                if (i <= j)
+                {
+                    temp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp;
+                    ++i; --j;
+                }
+            }
+            if (j > first) QuickSort(arr, first, j);
+            if (i < last) QuickSort(arr, i, last);
         }
     }
 }

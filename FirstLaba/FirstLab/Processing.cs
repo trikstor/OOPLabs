@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Data;
+using System.Runtime.InteropServices;
 using FirstLab.Commands;
 
 namespace FirstLab
@@ -123,13 +125,17 @@ namespace FirstLab
                 {
                     return AllComm[currCommand];
                 }
-                AllComm[""].Name = name;
-                return notFound;
+                throw new KeyNotFoundException();
+            }
+            catch (KeyNotFoundException)
+            {
+                Console.WriteLine("Команда '{0}' не найдена", currCommand);
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
             }
+            return null;
         }
 
         /// <summary>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
 
 namespace FirstLab.Commands
@@ -18,7 +19,7 @@ namespace FirstLab.Commands
 
         public string[] Synonyms
         {
-            get { return new[] {"run", "start"}; }
+            get { return new[] { "run", "start" }; }
         }
 
         public void Execute(List<int> param)
@@ -29,34 +30,39 @@ namespace FirstLab.Commands
                 {
                     // Список для хранения среднего времени работы каждого алгоритма
                     var times = new List<double>();
+                    var allSorts = new CurrSort[]
+                    {
+                        Sorts.Bubble,
+                        Sorts.Shell,
+                        Sorts.Quick,
+                        Sorts.DefaultSort
+                    };
 
-                    CurrSort currSort = Sorts.Bubble;
-                    times.Add(Compare(currSort));
-                    currSort = Sorts.Shell;
-                    times.Add(Compare(currSort));
-                    currSort = Sorts.Quick;
-                    times.Add(Compare(currSort));
-                    ;
 
                     // Получение среднего арифметического времени работы алгоритма
                     // путем деления времени на кол-во итераций
-                    for (var i = 0; i < 3; i++)
+                    for (var i = 0; i < 4; i++)
                     {
-                        times[i] = times[i] / Data.QuantIterations;
+                        times.Add(CheckTime(allSorts[i]) / Data.QuantIterations);
                     }
 
                     var info =
                         string.Format("Итераций: {0}, Размер массива: {1}\n ", Data.QuantIterations,
                             Data.DataSequence.Count) +
-                        string.Format("Пузырек: {0}мс\n Шелл: {1}мс\n Быстрая сортировка: {2}мс\n", times[0], times[1],
-                            times[2]);
+                        string.Format("Пузырек: {0}мс\n Шелл: {1}мс\n Быстрая сортировка: {2}мс\n Встроенная сортировка: {3}мс\n", times[0], times[1],
+                            times[2], times[3]);
 
                     Console.WriteLine(info);
                 }
                 else
                 {
-                    throw new Exception("Недопустимое кол-во итераций или элементов тестовой последовательности.");
+                    throw new NoNullAllowedException();
                 }
+            }
+            catch (NoNullAllowedException)
+            {
+                Console.WriteLine("Недопустимое кол-во итераций или " +
+                                  "элементов тестовой последовательности, возможно вы их не задали.");
             }
             catch (Exception e)
             {
@@ -75,7 +81,7 @@ namespace FirstLab.Commands
         /// </summary>
         /// <param name="sort">Делегат необходимого метода</param>
         /// <returns>Общее время работы</returns>
-        private double Compare(CurrSort sort)
+        private double CheckTime(CurrSort sort)
         {
             var stopWatch = new Stopwatch();
 

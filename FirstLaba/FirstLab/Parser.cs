@@ -36,18 +36,16 @@ namespace FirstLab
 
                 for (var i = 1; i < currListComm.Length; i++)
                 {
-                    foreach (var flag in currListComm[i].Select(ch => !Char.IsLetter(ch)))
+                    int currParam;
+                    if (currListComm[i].Select(ch => !char.IsLetter(ch)).Any(flag => !flag) 
+                        || !int.TryParse(currListComm[i], out currParam))
                     {
-                        if (!flag)
-                        {
-                            throw new InvalidDataException("символ '" + currListComm[i] + 
-                                "', позиция " + i);
-                        }
+                        throw new InvalidDataException("символ '" + currListComm[i] + 
+                                                       "', позиция " + i);
                     }
-                    param.Add(Convert.ToInt32(currListComm[i], 10));
+                    param.Add(currParam);
                 }
                 return new Command(currListComm[0], param);
-
             }
             catch (InvalidDataException e)
             {

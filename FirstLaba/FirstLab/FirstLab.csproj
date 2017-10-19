@@ -53,7 +53,6 @@
     <Compile Include="Commands\SeqCommand.cs" />
     <Compile Include="Commands\TestCommand.cs" />
     <Compile Include="Data.cs" />
-    <Compile Include="Commands\NotFoundCommand.cs" />
     <Compile Include="Parser.cs" />
     <Compile Include="Processing.cs" />
     <Compile Include="Program.cs" />
