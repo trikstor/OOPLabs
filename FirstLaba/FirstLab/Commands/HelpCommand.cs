@@ -25,15 +25,21 @@ namespace FirstLab.Commands
             Console.WriteLine("Данная программа позволяет определить" +
                               "скорость различных видов сортировок целых чисел.\n" +
                               "Список команд:");
+
+            string lastCommName = null;
             foreach (var command in Processing.AllComm.Values)
             {
-                Console.WriteLine("{0} - {1}", command.Name, command.Help);
-
-                Console.WriteLine("\t\tСинонимы команды:");
-                foreach (var syn in command.Synonyms)
+                if (command.Name != lastCommName)
                 {
-                    Console.WriteLine("\t\t\t{0}", syn);
+                    Console.WriteLine("{0} - {1}", command.Name, command.Help);
+
+                    Console.WriteLine("\t\tСинонимы команды:");
+                    foreach (var syn in command.Synonyms)
+                    {
+                        Console.WriteLine("\t\t\t{0}", syn);
+                    }
                 }
+                lastCommName = command.Name;
             }
         }
     }
