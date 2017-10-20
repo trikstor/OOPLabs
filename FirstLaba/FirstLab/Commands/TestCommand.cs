@@ -5,6 +5,9 @@ using System.Diagnostics;
 
 namespace FirstLab.Commands
 {
+    /// <summary>
+    /// Запуск и измерение времени работы алгоритма на заданных данных
+    /// </summary>
     public class TestCommand : ICommand
     {
         public string Name
@@ -30,6 +33,7 @@ namespace FirstLab.Commands
                 {
                     // Список для хранения среднего времени работы каждого алгоритма
                     var times = new List<double>();
+                    // Список всех реализованных сортировок
                     var allSorts = new CurrSort[]
                     {
                         Sorts.Bubble,
@@ -47,10 +51,10 @@ namespace FirstLab.Commands
                     }
 
                     var info =
-                        string.Format("Итераций: {0}, Размер массива: {1}\n ", Data.QuantIterations,
-                            Data.DataSequence.Count) +
-                        string.Format("Пузырек: {0}мс\n Шелл: {1}мс\n Быстрая сортировка: {2}мс\n Встроенная сортировка: {3}мс\n", times[0], times[1],
-                            times[2], times[3]);
+                        string.Format("Итераций: {0}, Размер массива: {1}\n " +
+                                      "Пузырек: {2}мс\n Шелл: {3}мс\n Быстрая сортировка: {4}мс\n Встроенная сортировка: {5}мс\n",
+                                      Data.QuantIterations, Data.DataSequence.Count, times[0], times[1], 
+                                      times[2], times[3]);
 
                     Console.WriteLine(info);
                 }

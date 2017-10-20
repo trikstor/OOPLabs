@@ -4,6 +4,10 @@ using System.IO;
 
 namespace FirstLab.Commands
 {
+    /// <summary>
+    /// Задает кол-во итераций цикла определения среднего времени.
+    /// Параметр - кол-во итераций.
+    /// </summary>
     public class IterCommand : ICommand
     {
         public string Name
@@ -21,11 +25,6 @@ namespace FirstLab.Commands
             get { return new[] {"iter"}; }
         }
 
-        /// <summary>
-        /// Задает кол-во итераций цикла определения среднего времени
-        /// </summary>
-        /// <param name="param">Первый элемент списка - кол-во итераций</param>
-        /// <returns>Возвращает информационное сообщение</returns>
         public void Execute(List<int> param)
         {
             try

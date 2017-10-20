@@ -9,8 +9,10 @@ namespace FirstLab
     {
         private static void Main(string[] args)
         {
+            // Если задан параметр - имя текстового файла, то открываем поток на чтение
+            // из этого файла и прередаем его в конструктор.
             var reader = args.Length > 0 ? File.OpenText(args[0]) : Console.In;
-            var robot = new Processing(reader, interactive : args.Length == 0);
+            var robot = new Processing(reader, args.Length == 0);
             robot.Run();
 
         }

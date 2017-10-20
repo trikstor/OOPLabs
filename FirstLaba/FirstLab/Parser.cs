@@ -7,13 +7,11 @@ namespace FirstLab
 {
     /// <summary>
     /// Разбиение строки по пробелам, формирование списка параметров команды
-    /// вызов метода обработки команды
     /// </summary>
     public static class Parser
     {
         /// <summary>
         /// Разбиение строки по пробелам, формирование списка параметров команды
-        /// вызов метода обработки команды
         /// </summary>
         /// <param name="str">строка команды для парсинга</param>
         /// <returns>
@@ -36,9 +34,8 @@ namespace FirstLab
 
                 for (var i = 1; i < currListComm.Length; i++)
                 {
-                    int currParam;
                     if (currListComm[i].Select(ch => !char.IsLetter(ch)).Any(flag => !flag) 
-                        || !int.TryParse(currListComm[i], out currParam))
+                        || !int.TryParse(currListComm[i], out var currParam))
                     {
                         throw new InvalidDataException("символ '" + currListComm[i] + 
                                                        "', позиция " + i);

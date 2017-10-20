@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace FirstLab.Commands
 {
+    /// <summary>
+    /// Справочная информация о программе и ее командах
+    /// </summary>
     public class HelpCommand : ICommand
     {
         public string Name

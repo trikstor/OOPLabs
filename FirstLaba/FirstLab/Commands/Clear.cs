@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace FirstLab.Commands
 {
+    /// <summary>
+    /// Очистка консоли
+    /// </summary>
     class Clear : ICommand
     {
     public string Name

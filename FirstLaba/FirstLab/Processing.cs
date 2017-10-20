@@ -1,8 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
-using System.Data;
-using System.Runtime.InteropServices;
 using FirstLab.Commands;
 
 namespace FirstLab
@@ -18,41 +16,70 @@ namespace FirstLab
         private List<string> CurrListComm { get; set; }
 
         /// <summary>
-        /// Словарь всех возможных команд, реализующих интерфейс ICommand
+        /// Словарь всех возможных команд с синонимами, реализующих интерфейс ICommand
         /// </summary>
         public static Dictionary<string, ICommand> AllComm { get; private set; }
 
-        // Запущено ли приложение
+        /// <summary>
+        /// Флаг останавливает программу при значении false
+        /// </summary>
         private bool isRunning = true;
+
+        /// <summary>
+        /// Использование консоли либо текстового файла
+        /// для получения команд
+        /// </summary>
         private bool Interactive { get; set; }
 
+        /// <summary>
+        /// Список всех экземпляров классов команд
+        /// </summary>
         public List<ICommand> Commands { get; set; }
 
         public Processing(TextReader reader, bool interactive)
         {
-            AllComm = new Dictionary<string, ICommand>();
-            Commands = new List<ICommand>
+            try
             {
-                {new ExitCommand(this)},
-                {new HelpCommand()},
-                {new TestCommand()},
-                {new RandCommand()},
-                {new SeqCommand()},
-                {new IterCommand()},
-                {new Clear()}
-            };
+                AllComm = new Dictionary<string, ICommand>();
+                Commands = new List<ICommand>
+                {
+                    {new ExitCommand(this)},
+                    {new HelpCommand()},
+                    {new TestCommand()},
+                    {new RandCommand()},
+                    {new SeqCommand()},
+                    {new IterCommand()},
+                    {new Clear()}
+                };
 
-            Interactive = interactive;
+                Interactive = interactive;
 
-            if (interactive) return;
-            string str;
+                if (interactive) return;
+                string str;
 
-            while ((str = reader.ReadLine()) != null)
-            {
-                CurrListComm.Add(str.Replace("\n", ""));
+                while ((str = reader.ReadLine()) != null)
+                {
+                    CurrListComm.Add(str.Replace("\n", ""));
+                }
+                if (CurrListComm.Count == 0)
+                {
+                    throw new InvalidDataException();
+                }
             }
+            catch (InvalidDataException)
+            {
+                Console.WriteLine("Пустой файл.");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
         }
 
+        /// <summary>
+        /// Добавление команд вместе с их синонимами в словарь команд
+        /// </summary>
         public void AddCommands()
         {
             foreach (var currComm in Commands)
@@ -65,16 +92,23 @@ namespace FirstLab
             }
         }
 
+        /// <summary>
+        /// Осановка программы
+        /// </summary>
         public void Stop()
         {
             isRunning = false;
         }
 
+        /// <summary>
+        /// Запуск программы
+        /// </summary>
         public void Run()
         {
             AddCommands();
 
             List<string>.Enumerator commandsFormFile = new List<string>.Enumerator();
+
             if(!Interactive)
                 commandsFormFile = CurrListComm.GetEnumerator();
 
@@ -134,28 +168,6 @@ namespace FirstLab
             catch (Exception e)
             {
                 Console.WriteLine(e);
-            }
-            return null;
-        }
-
-        /// <summary>
-        /// Поиск команды по ее синонимам
-        /// </summary>
-        /// <param name="currCommand">Имя команды, заданное пользователем</param>
-        /// <returns>Возвращает экземпляр класса команды</returns>
-        private ICommand DeepCommSearch(string currCommand)
-        {
-            // Перебор команд
-            foreach (var comm in AllComm.Values)
-            {
-                // Перебор синонимов у каждой из команд
-                foreach (var syn in comm.Synonyms)
-                {
-                    if (currCommand == syn)
-                    {
-                        return comm;
-                    }
-                }
             }
             return null;
         }

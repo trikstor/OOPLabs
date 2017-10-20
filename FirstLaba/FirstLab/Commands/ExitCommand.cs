@@ -2,6 +2,9 @@
 
 namespace FirstLab.Commands
 {
+    /// <summary>
+    /// Завершение работы программы
+    /// </summary>
     class ExitCommand : ICommand
     {
         public string Name

@@ -4,6 +4,10 @@ using System.IO;
 
 namespace FirstLab.Commands
 {
+    /// <summary>
+    /// Задает последовательность для обработки алгоритмами
+    /// Параметры - последовательность целых чисел через пробел
+    /// </summary>
     public class SeqCommand : ICommand
     {
         public string Name
@@ -21,11 +25,6 @@ namespace FirstLab.Commands
             get { return new[] {"seq"}; }
         }
 
-        /// <summary>
-        /// Задает последовательность для обработки алгоритмами
-        /// </summary>
-        /// <param name="param">Список чисел для обработки алгоритмами</param>
-        /// <returns>Возвращает информационное сообщение</returns>
         public void Execute(List<int> param)
         {
             try

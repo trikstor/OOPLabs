@@ -4,6 +4,11 @@ using System.IO;
 
 namespace FirstLab.Commands
 {
+    /// <summary>
+    ///  Добавление последовательности случайных чисел для проверки алгоритмов
+    /// Параметры, первый из которых может указывать кол-во случайных чисел,
+    /// если список пуст то генерируется 1000 случ. чисел.
+    /// </summary>
     public class RandCommand : ICommand
     {
         public string Name
@@ -21,14 +26,6 @@ namespace FirstLab.Commands
             get { return new[] { "rand", "generate" }; }
         }
 
-        /// <summary>
-        ///  Добавление последовательности случайных чисел для проверки алгоритмов
-        /// </summary>
-        /// <param name="param">
-        /// Параметры, первый из которых может указывать кол-во случайных чисел,
-        /// если список пуст то генерируется 1000 случ. чисел.
-        /// </param>
-        /// <returns>Возвращает уведомление о выполнении операции</returns>
         public void Execute(List<int> param)
         {
             try
