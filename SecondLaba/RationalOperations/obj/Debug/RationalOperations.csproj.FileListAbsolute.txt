@@ -9,3 +9,9 @@ C:\Users\Acer\Saved Games\Desktop\OOPLabs\SecondLaba\RationalOperations\bin\Debu
 C:\Users\Acer\Saved Games\Desktop\OOPLabs\SecondLaba\RationalOperations\obj\Debug\RationalOperations.csprojResolveAssemblyReference.cache
 C:\Users\Acer\Saved Games\Desktop\OOPLabs\SecondLaba\RationalOperations\obj\Debug\RationalOperations.exe
 C:\Users\Acer\Saved Games\Desktop\OOPLabs\SecondLaba\RationalOperations\obj\Debug\RationalOperations.pdb
+C:\Users\Антон\Desktop\OOPLabs\SecondLaba\RationalOperations\bin\Debug\RationalOperations.exe.config
+C:\Users\Антон\Desktop\OOPLabs\SecondLaba\RationalOperations\bin\Debug\RationalOperations.exe
+C:\Users\Антон\Desktop\OOPLabs\SecondLaba\RationalOperations\bin\Debug\RationalOperations.pdb
+C:\Users\Антон\Desktop\OOPLabs\SecondLaba\RationalOperations\obj\Debug\RationalOperations.csproj.CoreCompileInputs.cache
+C:\Users\Антон\Desktop\OOPLabs\SecondLaba\RationalOperations\obj\Debug\RationalOperations.exe
+C:\Users\Антон\Desktop\OOPLabs\SecondLaba\RationalOperations\obj\Debug\RationalOperations.pdb

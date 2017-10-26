@@ -34,14 +34,17 @@ namespace RationalOperations
 
         private int GCD(int a, int b)
         {
-            while( b != 0 )
+            while (a != 0 && b != 0)
+
             {
-                var remainder = a % b;
-                a = b;
-                b = remainder;
+
+                if (a >= b) a = a % b;
+
+                else b = b % a;
+
             }
-      
-            return a;
+
+            return a + b;
         }
 
         /// Операция сложения, возвращает новый объект - рациональное число,
@@ -52,10 +55,19 @@ namespace RationalOperations
 
             if (this.Denominator != c.Denominator)
             {
-                newRational.Denominator = GCD(c.Denominator, this.Denominator);
+                if (GCD(c.Denominator, this.Denominator) == 1)
+                {
+                    newRational.Denominator = this.Denominator * c.Denominator;
+                }
+                else
+                {
+                    newRational.Denominator = GCD(c.Denominator, this.Denominator);
+                }
+
 
                 newRational.Numerator = 
-                    c.Numerator * this.Denominator + this.Numerator * c.Denominator;
+                    c.Numerator * (newRational.Denominator/c.Denominator) + 
+                    this.Numerator * (newRational.Denominator/this.Denominator);
                 return newRational;
             }
 
@@ -105,8 +117,8 @@ namespace RationalOperations
         {
             var newRational = new Rational
             {
-                Numerator = this.Numerator / x.Denominator,
-                Denominator = this.Denominator / x.Numerator
+                Numerator = this.Numerator * x.Denominator,
+                Denominator = this.Denominator * x.Numerator
             };
 
             return newRational;
@@ -122,7 +134,7 @@ namespace RationalOperations
         /// Если Z = 0, опускается часть представления до точки включительно
         public override string ToString()
         {
-            return string.Format("{0}.{1}:{2}", Base, Numerator, Denominator);
+            return string.Format("{0}.{1}:{2}", this.Base, this.Fraction, this.Denominator);
         }
 
         /// Создание экземпляра рационального числа из строкового представления Z.N:D
@@ -135,16 +147,31 @@ namespace RationalOperations
         public static bool TryParse(string input, out Rational result)
         {
            result = new Rational();
-           Regex valParseRegex = new Regex(@"^(\d+)[.](\d+)[:](\d+)?$", RegexOptions.IgnoreCase);
 
-            var match = valParseRegex.Match(input);
-            if (!match.Success)
-                return false;
+            if (input.Contains("."))
+            {
+                Regex valParseRegex = new Regex(@"^(\d+)[.](\d+)[:](\d+)?$", RegexOptions.IgnoreCase);
 
-            result.Numerator = Convert.ToInt32(match.Groups[2].Value);
-            result.Denominator = Convert.ToInt32(match.Groups[3].Value);
+                var match = valParseRegex.Match(input);
+                if (!match.Success)
+                    return false;
 
-            WithoutIntegerPart(Convert.ToInt32(match.Groups[1].Value), ref result);
+                result.Numerator = Convert.ToInt32(match.Groups[2].Value);
+                result.Denominator = Convert.ToInt32(match.Groups[3].Value);
+
+                WithoutIntegerPart(Convert.ToInt32(match.Groups[1].Value), ref result);
+            }
+            else
+            {
+                Regex valParseRegex = new Regex(@"^(\d+)[:](\d+)?$", RegexOptions.IgnoreCase);
+
+                var match = valParseRegex.Match(input);
+                if (!match.Success)
+                    return false;
+
+                result.Numerator = Convert.ToInt32(match.Groups[1].Value);
+                result.Denominator = Convert.ToInt32(match.Groups[2].Value);
+            }
 
             return true;
         }
@@ -164,6 +191,7 @@ namespace RationalOperations
     {
         static void Main(string[] args)
         {
+            
         }
     }
 }
