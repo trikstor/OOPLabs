@@ -1,0 +1,11 @@
+c:\users\acer\documents\visual studio 2013\Projects\RationalOperations\RationalOperations\bin\Debug\RationalOperations.exe.config
+c:\users\acer\documents\visual studio 2013\Projects\RationalOperations\RationalOperations\bin\Debug\RationalOperations.exe
+c:\users\acer\documents\visual studio 2013\Projects\RationalOperations\RationalOperations\bin\Debug\RationalOperations.pdb
+c:\users\acer\documents\visual studio 2013\Projects\RationalOperations\RationalOperations\obj\Debug\RationalOperations.exe
+c:\users\acer\documents\visual studio 2013\Projects\RationalOperations\RationalOperations\obj\Debug\RationalOperations.pdb
+C:\Users\Acer\Saved Games\Desktop\OOPLabs\SecondLaba\RationalOperations\bin\Debug\RationalOperations.exe.config
+C:\Users\Acer\Saved Games\Desktop\OOPLabs\SecondLaba\RationalOperations\bin\Debug\RationalOperations.exe
+C:\Users\Acer\Saved Games\Desktop\OOPLabs\SecondLaba\RationalOperations\bin\Debug\RationalOperations.pdb
+C:\Users\Acer\Saved Games\Desktop\OOPLabs\SecondLaba\RationalOperations\obj\Debug\RationalOperations.csprojResolveAssemblyReference.cache
+C:\Users\Acer\Saved Games\Desktop\OOPLabs\SecondLaba\RationalOperations\obj\Debug\RationalOperations.exe
+C:\Users\Acer\Saved Games\Desktop\OOPLabs\SecondLaba\RationalOperations\obj\Debug\RationalOperations.pdb
